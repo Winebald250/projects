@@ -34,12 +34,21 @@ int main() {
         cout << "\nWord: ";
         screenword(word, guessedLetters);
 
-        cout << "Wrong! Lives left: " << maxGuesses - incorrectGuesses << endl;
+        cout << "Lives left: " << maxGuesses - incorrectGuesses << endl;
 
         // Get player's guess
-        char guess;
+        string input;
         cout << "Guess a letter: ";
-        cin >> guess;
+        cin >> input;
+
+        // Validate input: must be a single letter
+        if (input.length() != 1 || (input[0] < 'a' || input[0] > 'z') && (input[0] < 'A' || input[0] > 'Z')) {
+            cout << "Invalid input! Please enter a single letter.\n";
+            continue; // Skip to the next iteration without reducing lives
+        }
+
+        // Convert uppercase to lowercase manually
+        char guess = (input[0] >= 'A' && input[0] <= 'Z') ? input[0] + 32 : input[0];
 
         // Check if letter is in the word
         bool found = false;
@@ -52,8 +61,8 @@ int main() {
 
         // Update game state
         if (!found) {
-            incorrectGuesses++;
             cout << "Incorrect guess!" << endl;
+            incorrectGuesses++;
         }
 
         // Check win condition
