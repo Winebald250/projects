@@ -22,12 +22,28 @@ int main() {
     srand(time(0)); // Seed for random number generation
     string word = words[rand() % 5];
 
+    // Ask the user to choose the difficulty level
+    int maxGuesses;
+    string level;
+    cout << "Welcome to Hangman!\n";
+    cout << "Choose a difficulty level (easy, medium, hard): ";
+    cin >> level;
+
+    // Set the number of lives based on difficulty level
+    if (level == "easy") {
+        maxGuesses = 10;
+    } else if (level == "medium") {
+        maxGuesses = 6;
+    } else if (level == "hard") {
+        maxGuesses = 3;
+    } else {
+        cout << "Invalid difficulty level. Defaulting to medium.\n";
+        maxGuesses = 6;
+    }
+
     // Track game state
     bool guessedLetters[10] = {false}; // Assume max word length of 10
     int incorrectGuesses = 0;
-    int maxGuesses = 6;
-
-    cout << "Welcome to Hangman!" << endl;
 
     while (incorrectGuesses < maxGuesses) {
         // Display current game status
