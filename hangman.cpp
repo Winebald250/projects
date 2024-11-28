@@ -31,7 +31,7 @@ int main() {
 
     // Set the number of lives based on difficulty level
     if (level == "easy") {
-        maxGuesses = 10;
+        maxGuesses = 9;
     } else if (level == "medium") {
         maxGuesses = 6;
     } else if (level == "hard") {
